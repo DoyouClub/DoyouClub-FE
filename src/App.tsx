@@ -1,5 +1,11 @@
+import RootProvider from './components/RootProvider.tsx'
+
 const App = () => {
-  return <></>
+  return (
+    <RootProvider>
+      <></>
+    </RootProvider>
+  )
 }
 
 export default App
