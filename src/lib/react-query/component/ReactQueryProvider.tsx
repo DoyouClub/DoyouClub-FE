@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactNode, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useState } from 'react'
 
 interface Props {
   children: ReactNode
