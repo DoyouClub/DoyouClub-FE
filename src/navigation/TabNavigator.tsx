@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '../screen/HomeScreen.tsx'
 import ClubListScreen from '../screen/club/ClubListScreen.tsx'
 import BoardScreen from '../screen/board/BoardScreen.tsx'
-import { Ionicons } from '../lib/react-native-vector-icons/icons.ts'
+import { Ionicons } from '../lib/icon/icons.ts'
 
 interface TabNavigatorParamList extends ParamListBase {
   home: undefined
