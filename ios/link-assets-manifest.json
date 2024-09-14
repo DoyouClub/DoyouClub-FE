@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/static/font/NanumSquare_acB.ttf",
+      "sha1": "3b306b1d284bcb799ca4005818115560d6bd0fb3"
+    },
+    {
+      "path": "src/static/font/NanumSquare_acEB.ttf",
+      "sha1": "55576570a89d43266d367ebb7fe6ed280f5bd06e"
+    },
+    {
+      "path": "src/static/font/NanumSquare_acL.ttf",
+      "sha1": "4bc7d8fb260d23596cd55864f414616ad665308b"
+    },
+    {
+      "path": "src/static/font/NanumSquare_acR.ttf",
+      "sha1": "153cebe1517941a6b8da5cb892be8e39fef8d36a"
+    }
+  ]
+}
