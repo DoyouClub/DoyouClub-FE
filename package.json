@@ -5,7 +5,11 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:local": "react-native run-android --variant=local",
+    "android:dev": "react-native run-android --variant=dev",
     "ios": "react-native run-ios",
+    "ios:local": "react-native run-ios --scheme local",
+    "ios:dev": "react-native run-ios --scheme dev",
     "lint": "eslint .",
     "start": "react-native start",
     "postinstall": "patch-package"
@@ -46,6 +50,7 @@
     "eslint": "^8.19.0",
     "patch-package": "^8.0.0",
     "prettier": "2.8.8",
+    "react-native-config": "^1.5.3",
     "typescript": "5.0.4"
   },
   "engines": {
