@@ -6,4 +6,9 @@ interface SignInResponse {
   refreshToken?: string
 }
 
-export type { SignInResponse }
+interface RefreshResponse {
+  accessToken: string
+  refreshToken: string
+}
+
+export type { SignInResponse, RefreshResponse }
