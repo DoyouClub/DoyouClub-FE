@@ -105,6 +105,16 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        develop {
+        }
+        stage {
+        }
+        product {
+        }
+    }
 }
 
 dependencies {
@@ -118,4 +128,11 @@ dependencies {
     }
 }
 
+project.ext.envConfigFiles = [
+    local: "env/.env.local",
+    dev: "env/.env.dev",
+    anothercustombuild: ".env",
+]
+
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
