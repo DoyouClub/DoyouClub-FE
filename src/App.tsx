@@ -1,5 +1,5 @@
-import RootProvider from './components/RootProvider.tsx'
 import RootNavigator from './navigation/RootNavigator.tsx'
+import RootProvider from './components/common/RootProvider.tsx'
 
 const App = () => {
   return (
