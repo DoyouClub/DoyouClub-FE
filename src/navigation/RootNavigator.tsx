@@ -12,7 +12,7 @@ const { Navigator, Screen } = createBottomTabNavigator<RootNavigatorParamList>()
 
 const RootNavigator = () => {
   return (
-    <Navigator initialRouteName="stack" tabBar={() => <></>} screenOptions={{ headerShown: false }}>
+    <Navigator initialRouteName="auth" tabBar={() => <></>} screenOptions={{ headerShown: false }}>
       <Screen name="auth" component={AuthNavigator} />
       <Screen name="stack" component={StackNavigator} />
     </Navigator>
