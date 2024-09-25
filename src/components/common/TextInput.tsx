@@ -16,7 +16,7 @@ const hitSlop = {
 } as const
 
 const TextInput = ({ style, states, ...props }: Props) => {
-  const { value, setValue, setIsFocused, ref, isMasked } = states
+  const { value, setValue, setIsFocused, ref, isMasked, options } = states
   const isDefault = style?.fontFamily === undefined
 
   return (
@@ -28,23 +28,22 @@ const TextInput = ({ style, states, ...props }: Props) => {
         fontWeight: isDefault ? undefined : weights[style.fontWeight ?? 'normal'],
         fontFamily: isDefault ? fonts[style?.fontWeight ?? 'normal'] : style.fontFamily
       }}
-      {...(states && {
-        onChangeText: text => {
-          setValue?.(text)
-          props.onChangeText?.(text)
-        },
-        onFocus: e => {
-          props.onFocus?.(e)
-          setIsFocused(true)
-        },
-        onBlur: e => {
-          props.onBlur?.(e)
-          setIsFocused(false)
-        },
-        ref,
-        value,
-        secureTextEntry: isMasked
-      })}
+      onChangeText={text => {
+        setValue?.(text)
+        props.onChangeText?.(text)
+      }}
+      onFocus={e => {
+        props.onFocus?.(e)
+        setIsFocused(true)
+      }}
+      onBlur={e => {
+        props.onBlur?.(e)
+        setIsFocused(false)
+      }}
+      ref={ref}
+      value={value}
+      secureTextEntry={isMasked}
+      maxLength={options?.maxLength}
       {...props}
     />
   )
