@@ -5,8 +5,14 @@ interface SignInRequest {
   provider: Provider
 }
 
+interface SignUpRequest {
+  email: string
+  token: string
+  name: string
+}
+
 interface RefreshRequest {
   refreshToken: string
 }
 
-export type { SignInRequest, RefreshRequest }
+export type { SignInRequest, SignUpRequest, RefreshRequest }
