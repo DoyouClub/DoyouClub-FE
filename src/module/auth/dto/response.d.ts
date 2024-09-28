@@ -11,4 +11,9 @@ interface RefreshResponse {
   refreshToken: string
 }
 
-export type { SignInResponse, RefreshResponse }
+interface SignUpResponse {
+  accessToken: string
+  refreshToken: string
+}
+
+export type { SignInResponse, SignUpResponse, RefreshResponse }
