@@ -4,11 +4,13 @@ import HomeScreen from '../screen/HomeScreen.tsx'
 import ClubListScreen from '../screen/club/ClubListScreen.tsx'
 import BoardScreen from '../screen/board/BoardScreen.tsx'
 import { Ionicons } from '../lib/icon/icons.ts'
+import UserInfoScreen from '../screen/user/UserInfoScreen.tsx'
 
 interface TabNavigatorParamList extends ParamListBase {
   home: undefined
   board: undefined
   clubList: undefined
+  userInfo: undefined
 }
 
 const { Navigator, Screen } = createBottomTabNavigator<TabNavigatorParamList>()
@@ -64,6 +66,19 @@ const TabNavigator = () => {
               <Ionicons name="search" size={18} color={color} />
             ) : (
               <Ionicons name="search" size={18} color={color} />
+            )
+        }}
+      />
+      <Screen
+        name="userInfo"
+        component={UserInfoScreen}
+        options={{
+          title: '내 정보',
+          tabBarIcon: ({ color, focused }) =>
+            focused ? (
+              <Ionicons name="person" size={18} color={color} />
+            ) : (
+              <Ionicons name="person-outline" size={18} color={color} />
             )
         }}
       />
