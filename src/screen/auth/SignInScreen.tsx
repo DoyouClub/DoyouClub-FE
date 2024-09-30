@@ -10,9 +10,13 @@ import LoginButton from '../../components/auth/LoginButton.tsx'
 import type { SignInRequest } from '../../module/auth/dto/request'
 import { signIn } from '../../module/auth/api.ts'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getMyUser } from '../../module/user/api.ts'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../lib/redux/reducer/userReducer.ts'
 
 const SignInScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigatorParamList>>()
+  const dispatch = useDispatch()
 
   const signInHandler = useCallback(async (request: SignInRequest) => {
     const response = await signIn(request)
@@ -27,6 +31,9 @@ const SignInScreen = () => {
         AsyncStorage.setItem('accessToken', response.accessToken),
         AsyncStorage.setItem('refreshToken', response.refreshToken)
       ])
+
+      dispatch(setUser(await getMyUser()))
+
       navigation.navigate('stack')
     }
   }, [])

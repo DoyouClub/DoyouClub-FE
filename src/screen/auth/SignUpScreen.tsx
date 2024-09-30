@@ -13,10 +13,14 @@ import { useCallback, useMemo } from 'react'
 import type { SignUpRequest } from '../../module/auth/dto/request'
 import { signUp } from '../../module/auth/api.ts'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { setUser } from '../../lib/redux/reducer/userReducer.ts'
+import { getMyUser } from '../../module/user/api.ts'
+import { useDispatch } from 'react-redux'
 
 const SignUpScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigatorParamList, 'signUp'>>()
   const route = useRoute<RouteProp<NavigatorParamList, 'signUp'>>()
+  const dispatch = useDispatch()
   const { email, token } = route.params
   const nameStates = useInput('name', { maxLength: 4, canEmpty: false })
   const { value: name } = nameStates
@@ -36,6 +40,9 @@ const SignUpScreen = () => {
       AsyncStorage.setItem('accessToken', response.accessToken),
       AsyncStorage.setItem('refreshToken', response.refreshToken)
     ])
+
+    dispatch(setUser(await getMyUser()))
+
     navigation.navigate('stack')
   }, [])
 
