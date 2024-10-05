@@ -3,6 +3,7 @@ import type { Activity, Tag } from './enum'
 interface ClubResponse {
   id: string
   name: string
+  image: string
   description: string
   president?: President
   room?: string
