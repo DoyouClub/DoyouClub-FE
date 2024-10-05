@@ -2,9 +2,11 @@ import type { ParamListBase } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { Dimensions } from 'react-native'
 import TabNavigator from './TabNavigator.tsx'
+import MyClubListScreen from '../screen/club/MyClubListScreen.tsx'
 
 interface StackNavigatorParamList extends ParamListBase {
   tab: undefined
+  myClubList: undefined
 }
 
 const { Navigator, Screen } = createStackNavigator<StackNavigatorParamList>()
@@ -31,6 +33,7 @@ const StackNavigator = () => {
         ...TransitionPresets.SlideFromRightIOS
       }}>
       <Screen name="tab" component={TabNavigator} options={{ headerShown: false }} />
+      <Screen name="myClubList" component={MyClubListScreen} options={{ headerTitle: '내 동아리' }} />
     </Navigator>
   )
 }

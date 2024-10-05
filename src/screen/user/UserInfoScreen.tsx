@@ -2,8 +2,15 @@ import useSelector from '../../lib/redux/hook/useSelector.ts'
 import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
 import Text from '../../components/common/Text.tsx'
 import suya from '../../static/image/suya.jpg'
+import MenuItem from '../../components/user/MenuItem.tsx'
+import { MaterialIcons } from '../../lib/icon/icons.ts'
+import type { NavigationProp } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
+import type { NavigatorParamList } from '../../navigation/navigation'
+import Line from '../../components/common/Line.tsx'
 
 const UserInfoScreen = () => {
+  const navigation = useNavigation<NavigationProp<NavigatorParamList>>()
   const user = useSelector(store => store.user.user!)
 
   return (
@@ -42,6 +49,15 @@ const UserInfoScreen = () => {
                 님
               </Text>
             </View>
+          </View>
+          <Line />
+          <View style={styles.menuList}>
+            <Text style={styles.menuTitle}>동아리</Text>
+            <MenuItem
+              name="내 동아리"
+              icon={<MaterialIcons name="people" size={22} />}
+              onPress={() => navigation.navigate('myClubList')}
+            />
           </View>
         </View>
       </ScrollView>
