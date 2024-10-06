@@ -1,15 +1,17 @@
 import { StyleSheet, View } from 'react-native'
-import ClubList from '../../components/club/ClubList.tsx'
 import { useQuery } from 'react-query'
 import { getMyClubs } from '../../module/club/api.ts'
+import FlatList from '../../components/common/FlatList.tsx'
+import ClubItem from '../../components/club/ClubItem.tsx'
 
 const MyClubListScreen = () => {
   const { data: clubs = [] } = useQuery(['getMyClubs'], getMyClubs)
 
   return (
     <View style={styles.container}>
-      <ClubList
-        clubs={clubs}
+      <FlatList
+        data={clubs}
+        renderItem={({ item }) => <ClubItem club={item} />}
         contentContainerStyle={{
           paddingTop: 10,
           paddingBottom: 30
