@@ -1,6 +1,6 @@
 import { GET } from '../../lib/axios/method.ts'
 import type { ClubResponse } from './dto/response'
 
-const getMyClubs = () => GET<ClubResponse[]>('/club/my')
+const getClubsByUserId = (userId: string) => GET<ClubResponse[]>(`/club/${userId}`)
 
-export { getMyClubs }
+export { getClubsByUserId }

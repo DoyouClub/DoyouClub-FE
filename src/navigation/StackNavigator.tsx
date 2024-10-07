@@ -3,10 +3,12 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import { Dimensions } from 'react-native'
 import TabNavigator from './TabNavigator.tsx'
 import MyClubListScreen from '../screen/club/MyClubListScreen.tsx'
+import MyPostListScreen from '../screen/post/MyPostListScreen.tsx'
 
 interface StackNavigatorParamList extends ParamListBase {
   tab: undefined
   myClubList: undefined
+  myPostList: undefined
 }
 
 const { Navigator, Screen } = createStackNavigator<StackNavigatorParamList>()
@@ -34,6 +36,7 @@ const StackNavigator = () => {
       }}>
       <Screen name="tab" component={TabNavigator} options={{ headerShown: false }} />
       <Screen name="myClubList" component={MyClubListScreen} options={{ headerTitle: '내 동아리' }} />
+      <Screen name="myPostList" component={MyPostListScreen} options={{ headerTitle: '내 게시글' }} />
     </Navigator>
   )
 }

@@ -3,7 +3,7 @@ import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
 import Text from '../../components/common/Text.tsx'
 import suya from '../../static/image/suya.jpg'
 import MenuItem from '../../components/user/MenuItem.tsx'
-import { MaterialIcons } from '../../lib/icon/icons.ts'
+import { Ionicons, MaterialIcons } from '../../lib/icon/icons.ts'
 import type { NavigationProp } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
 import type { NavigatorParamList } from '../../navigation/navigation'
@@ -57,6 +57,15 @@ const UserInfoScreen = () => {
               name="내 동아리"
               icon={<MaterialIcons name="people" size={22} />}
               onPress={() => navigation.navigate('myClubList')}
+            />
+          </View>
+          <Line />
+          <View style={styles.menuList}>
+            <Text style={styles.menuTitle}>게시판</Text>
+            <MenuItem
+              name="내 게시글"
+              icon={<Ionicons name="pencil-outline" size={22} />}
+              onPress={() => navigation.navigate('myPostList')}
             />
           </View>
         </View>

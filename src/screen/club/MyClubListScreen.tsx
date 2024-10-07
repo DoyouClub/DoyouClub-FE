@@ -1,11 +1,13 @@
 import { StyleSheet, View } from 'react-native'
 import { useQuery } from 'react-query'
-import { getMyClubs } from '../../module/club/api.ts'
 import FlatList from '../../components/common/FlatList.tsx'
 import ClubItem from '../../components/club/ClubItem.tsx'
+import useSelector from '../../lib/redux/hook/useSelector.ts'
+import { getClubsByUserId } from '../../module/club/api.ts'
 
 const MyClubListScreen = () => {
-  const { data: clubs = [] } = useQuery(['getMyClubs'], getMyClubs)
+  const user = useSelector(store => store.user.user)
+  const { data: clubs = [] } = useQuery(['getClubsByUserId', user!.id], () => getClubsByUserId(user!.id))
 
   return (
     <View style={styles.container}>
