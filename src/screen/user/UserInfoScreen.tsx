@@ -8,10 +8,42 @@ import type { NavigationProp } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
 import type { NavigatorParamList } from '../../navigation/navigation'
 import Line from '../../components/common/Line.tsx'
+import { useEffect, useState } from 'react'
+import useInput from '../../lib/react/hook/useInput.ts'
+import TextInput from '../../components/common/TextInput.tsx'
+import { useDispatch } from 'react-redux'
+import { useMutation } from 'react-query'
+import { updateUserById } from '../../module/user/api.ts'
+import { setUser } from '../../lib/redux/reducer/userReducer.ts'
+import TouchableScale from '../../components/common/TouchableScale.tsx'
 
 const UserInfoScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigatorParamList>>()
   const user = useSelector(store => store.user.user!)
+  const dispatch = useDispatch()
+  const [isUpdating, setIsUpdating] = useState(false)
+  const { mutate: updateUser } = useMutation((id: string) => updateUserById(id, { name }), {
+    onMutate: () => {
+      const previousUser = { ...user }
+
+      dispatch(setUser({ ...user, name }))
+
+      return { previousUser }
+    },
+    onError: (_error, _variables, context) => {
+      dispatch(setUser(context!.previousUser))
+    }
+  })
+  const nameStates = useInput('name', {
+    maxLength: 4,
+    canEmpty: false,
+    initialValue: user.name
+  })
+  const { value: name, setValue: setName, ref: nameRef } = nameStates
+
+  useEffect(() => {
+    if (isUpdating) nameRef.current?.focus()
+  }, [isUpdating])
 
   return (
     <SafeAreaView
@@ -33,21 +65,59 @@ const UserInfoScreen = () => {
                 resizeMode="contain"
               />
             </View>
-            <View style={{ flexDirection: 'row' }}>
-              <Text
-                style={{
-                  fontSize: 26,
-                  fontWeight: 'extra'
-                }}>
-                {user.name}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 26,
-                  fontWeight: 'normal'
-                }}>
-                님
-              </Text>
+            <View style={{ gap: 9 }}>
+              {isUpdating ? (
+                <View style={{ flexDirection: 'row' }}>
+                  <TextInput
+                    states={nameStates}
+                    style={{
+                      fontSize: 26,
+                      fontWeight: 'extra',
+                      borderBottomWidth: 0.4
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontSize: 26,
+                      fontWeight: 'normal'
+                    }}>
+                    님
+                  </Text>
+                </View>
+              ) : (
+                <View style={{ flexDirection: 'row' }}>
+                  <Text
+                    style={{
+                      fontSize: 26,
+                      fontWeight: 'extra'
+                    }}>
+                    {user.name}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 26,
+                      fontWeight: 'normal'
+                    }}>
+                    님
+                  </Text>
+                </View>
+              )}
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableScale
+                  containerStyle={styles.updateButton}
+                  onPress={() => {
+                    if (isUpdating) updateUser(user.id)
+                    setIsUpdating(current => !current)
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      color: 'white'
+                    }}>
+                    {isUpdating ? '저장' : '수정'}
+                  </Text>
+                </TouchableScale>
+              </View>
             </View>
           </View>
           <Line />
@@ -104,6 +174,22 @@ const styles = StyleSheet.create({
     color: 'rgb(140, 140, 140)',
     fontSize: 13,
     fontWeight: 'bold'
+  },
+  updateButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 9,
+    borderRadius: 8,
+    backgroundColor: 'rgb(160, 160, 255)',
+    shadowColor: 'rgb(180, 180, 180)',
+    shadowOffset: {
+      width: 0,
+      height: 0.3
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 3
   }
 })
 
