@@ -1,14 +1,9 @@
 import { StyleSheet, View } from 'react-native'
 import Text from '../common/Text.tsx'
-import type { Tag } from '../../module/club/dto/enum.d.ts'
+import { Tag } from '../../module/club/dto/enum.ts'
 
 interface Props {
-  tag: Tag
-}
-
-const tags: Record<Tag, string> = {
-  ACADEMIC: '학술',
-  UNION: '연합회'
+  tag: keyof typeof Tag
 }
 
 const TagItem = ({ tag }: Props) => {
@@ -21,7 +16,7 @@ const TagItem = ({ tag }: Props) => {
           color: 'white',
           textAlign: 'center'
         }}>
-        {tags[tag]}
+        {Tag[tag]}
       </Text>
     </View>
   )

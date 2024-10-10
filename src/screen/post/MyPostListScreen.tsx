@@ -13,7 +13,7 @@ const MyPostListScreen = () => {
     fetchNextPage,
     hasNextPage,
     isFetching
-  } = useInfiniteQuery(['getMyPostPage'], ({ pageParam = undefined }) => getMyPostPage(pageSize, pageParam), {
+  } = useInfiniteQuery(['getMyPostPage'], ({ pageParam = undefined }) => getMyPostPage(pageSize, pageParam as string), {
     getNextPageParam: lastPage => {
       const lastItem = lastPage[lastPage.length - 1]
 
