@@ -1,8 +1,8 @@
-import type { Provider } from '../../user/dto/enum'
+import type { Provider } from '../../user/dto/enum.ts'
 
 interface SignInRequest {
   token: string
-  provider: Provider
+  provider: keyof typeof Provider
 }
 
 interface SignUpRequest {
