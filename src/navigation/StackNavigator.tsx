@@ -4,11 +4,14 @@ import { Dimensions } from 'react-native'
 import TabNavigator from './TabNavigator.tsx'
 import MyClubListScreen from '../screen/club/MyClubListScreen.tsx'
 import MyPostListScreen from '../screen/post/MyPostListScreen.tsx'
+import type { ClubResponse } from '../module/club/dto/response'
+import ClubInfoScreen from '../screen/club/ClubInfoScreen.tsx'
 
 interface StackNavigatorParamList extends ParamListBase {
   tab: undefined
   myClubList: undefined
   myPostList: undefined
+  clubInfo: { club: ClubResponse }
 }
 
 const { Navigator, Screen } = createStackNavigator<StackNavigatorParamList>()
@@ -37,6 +40,7 @@ const StackNavigator = () => {
       <Screen name="tab" component={TabNavigator} options={{ headerShown: false }} />
       <Screen name="myClubList" component={MyClubListScreen} options={{ headerTitle: '내 동아리' }} />
       <Screen name="myPostList" component={MyPostListScreen} options={{ headerTitle: '내 게시글' }} />
+      <Screen name="clubInfo" component={ClubInfoScreen} options={{ headerTitle: '동아리 정보' }} />
     </Navigator>
   )
 }
