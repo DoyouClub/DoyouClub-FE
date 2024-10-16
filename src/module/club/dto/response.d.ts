@@ -12,7 +12,8 @@ interface ClubResponse {
   name: string
   image: string
   description: string
-  president?: President
+  notification?: string
+  president: President
   room?: string
   score: number
   generation: number
