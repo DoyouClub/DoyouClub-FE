@@ -1,6 +1,7 @@
 import type { Activity, Tag } from './enum.ts'
 
 interface President {
+  id?: string
   name: string
   grade: number
   major: string
@@ -18,7 +19,7 @@ interface ClubResponse {
   score: number
   generation: number
   activity: keyof typeof Activity
-  tags: (keyof typeof Tag)[]
+  tag: keyof typeof Tag
 }
 
 export type { ClubResponse }

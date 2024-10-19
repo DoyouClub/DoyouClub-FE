@@ -11,7 +11,7 @@ const TagItem = ({ tag }: Props) => {
     <View style={styles.container}>
       <Text
         style={{
-          fontSize: 10,
+          fontSize: 10.5,
           fontWeight: 'bold',
           color: 'white',
           textAlign: 'center'

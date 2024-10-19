@@ -63,10 +63,8 @@ const ClubInfoScreen = () => {
             {club.name}
           </Text>
         </View>
-        <View style={styles.tags}>
-          {club.tags.map(tag => (
-            <TagItem tag={tag} key={tag} />
-          ))}
+        <View style={styles.tag}>
+          <TagItem tag={club.tag} />
         </View>
         <View
           style={{
@@ -141,10 +139,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingHorizontal: 12
   },
-  tags: {
+  tag: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 5,
     paddingHorizontal: 12
   },
   buttons: {

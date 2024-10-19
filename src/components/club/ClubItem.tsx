@@ -44,10 +44,8 @@ const ClubItem = ({ club }: Props) => {
           }}>
           {club.description}
         </Text>
-        <View style={styles.tags}>
-          {club.tags.map(tag => (
-            <TagItem tag={tag} key={tag} />
-          ))}
+        <View style={styles.tag}>
+          <TagItem tag={club.tag} />
         </View>
       </View>
     </View>
@@ -71,10 +69,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3
   },
-  tags: {
+  tag: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 2,
     marginTop: 4
   }
 })
