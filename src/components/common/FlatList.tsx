@@ -15,7 +15,6 @@ const FlatList = <T,>({ listEmptyMessage, useRefresh = false, onRefresh, ...prop
       style={[{ height: '100%' }, props.style]}
       showsVerticalScrollIndicator={false}
       keyboardDismissMode="on-drag"
-      contentContainerStyle={[{ gap: 10 }, props.contentContainerStyle]}
       ListEmptyComponent={
         listEmptyMessage ? (
           <AnimatedView
@@ -40,6 +39,7 @@ const FlatList = <T,>({ listEmptyMessage, useRefresh = false, onRefresh, ...prop
       }
       refreshControl={useRefresh ? <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> : <></>}
       {...props}
+      contentContainerStyle={[{ gap: 10 }, props.contentContainerStyle]}
     />
   )
 }
