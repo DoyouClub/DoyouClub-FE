@@ -36,7 +36,8 @@ const ClubListScreen = () => {
     data: infiniteClub,
     hasNextPage,
     isFetching,
-    fetchNextPage
+    fetchNextPage,
+    refetch
   } = useInfiniteQuery(
     ['searchClubPage', request],
     ({ pageParam = undefined }) => searchClubPage(request, pageSize, pageParam as string),
@@ -95,7 +96,9 @@ const ClubListScreen = () => {
           }}
           onEndReached={onEndReachedHandler}
           onEndReachedThreshold={0.4}
+          onRefresh={refetch}
           listEmptyMessage="검색된 동아리가 없습니다."
+          useRefresh
         />
       </View>
       <FilterModal
